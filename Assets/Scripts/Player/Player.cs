@@ -9,10 +9,16 @@ public class Player : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [SerializeField] public LayerMask jumpableGrounds;
     
-    [SerializeField] public float runningSpeed;
+    [SerializeField] public float runSpeed;
+    [SerializeField] public float crouchHeightFactor;
+    [SerializeField] public float crouchAngularDragFactor;
+    [SerializeField] public float jumpForce;  
 
     public IdleState idle;
-    public RunningState running;
+    public RunState run;
+    public CrouchState crouch;
+    public JumpState jump;
+    public FallState fall;
     StateMachine movementSM;
 
     void Start()
@@ -21,7 +27,10 @@ public class Player : MonoBehaviour
 
         movementSM = new StateMachine();
         idle = new IdleState(this, movementSM);
-        running = new RunningState(this, movementSM);
+        run = new RunState(this, movementSM);
+        crouch = new CrouchState(this, movementSM);
+        jump = new JumpState(this, movementSM);
+        fall = new FallState(this, movementSM);
 
         movementSM.Initialize(idle);
     }
