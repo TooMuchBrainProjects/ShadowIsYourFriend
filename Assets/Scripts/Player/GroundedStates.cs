@@ -13,8 +13,14 @@ public abstract class Grounded : PlayerState
     public Grounded(Player player, StateMachine stateMachine) : base(player, stateMachine)
     {
         this.playerCollider = player.GetComponent<Collider2D>();
+    }
 
+    public override void Enter()
+    {
+        base.Enter();
+        this.isGrounded = false;
         this.movementInput = Vector2.zero;
+
     }
     public override void LogicUpdate()
     {
@@ -37,8 +43,8 @@ public abstract class Grounded : PlayerState
             }
 
         }
-        else if(!isGrounded)
-            stateMachine.ChangeState(player.fall);
+        //else if(!isGrounded)
+        //    stateMachine.ChangeState(player.fall);
         else
             stateMachine.ChangeState(player.idle);
     }
@@ -60,6 +66,18 @@ public class IdleState : Grounded
 {
     public IdleState(Player player, StateMachine stateMachine) : base(player, stateMachine)
     { }
+
+    public override void Enter()
+    {
+        base.Enter();
+        this.player.animator.SetTrigger("idle");
+    }
+
+    public override void Exit()
+    {
+        base.Enter();
+        this.player.animator.ResetTrigger("idle");
+    }
 }
 
 public class RunState : Grounded
@@ -67,10 +85,27 @@ public class RunState : Grounded
     public RunState(Player player, StateMachine stateMachine) : base(player, stateMachine)
     { }
 
+
+    public override void Enter()
+    {
+        base.Enter();
+        this.player.animator.SetTrigger("run");
+    }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
         base.player.rb.velocity += new Vector2(movementInput.x * base.player.runSpeed * Time.fixedDeltaTime, 0);
+        
+        if(player.rb.velocity.x < 0)
+            this.player.spriteRenderer.flipX = true;
+        else if (player.rb.velocity.x > 0)
+            this.player.spriteRenderer.flipX = false;
+    }
+    public override void Exit()
+    {
+        base.Enter();
+        this.player.animator.ResetTrigger("run");
     }
 }
 

@@ -13,6 +13,14 @@ public abstract class Aired : PlayerState
     {
         this.playerCollider = player.GetComponent<Collider2D>();
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        this.isGrounded = false;
+        this.movementInput = Vector2.zero;
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -37,8 +45,11 @@ public abstract class Aired : PlayerState
             {
                 stateMachine.ChangeState(player.idle);
             }
-
+            this.player.spriteRenderer.color = Color.green;
         }
+        else
+            this.player.spriteRenderer.color = Color.red;
+
     }
 
     public override void HandleInput()
@@ -53,6 +64,11 @@ public abstract class Aired : PlayerState
         isGrounded = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, this.player.jumpableGrounds);
         base.player.rb.velocity += new Vector2(movementInput.x * base.player.runSpeed * Time.fixedDeltaTime, 0);
 
+
+        if (player.rb.velocity.x < 0)
+            this.player.spriteRenderer.flipX = true;
+        else if (player.rb.velocity.x > 0)
+            this.player.spriteRenderer.flipX = false;
     }
 }
 
@@ -65,6 +81,13 @@ public class JumpState : Aired
     {
         base.Enter();
         this.player.rb.AddForce(Vector2.up * this.player.jumpForce, ForceMode2D.Impulse);
+        this.player.animator.SetTrigger("jump");
+    }
+
+    public override void Exit()
+    {
+        base.Enter();
+        this.player.animator.ResetTrigger("jump");
     }
 
     public override void LogicUpdate()
@@ -91,6 +114,13 @@ public class FallState : Aired
     public override void Enter()
     {
         base.Enter();
+        this.player.animator.SetTrigger("fall");
+    }
+
+    public override void Exit()
+    {
+        base.Enter();
+        this.player.animator.ResetTrigger("fall");
     }
 
     public override void PhysicsUpdate()

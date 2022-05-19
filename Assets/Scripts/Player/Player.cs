@@ -4,11 +4,16 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Animator animator;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
+
     [SerializeField] public LayerMask jumpableGrounds;
-    
+
     [SerializeField] public float runSpeed;
     [SerializeField] public float crouchHeightFactor;
     [SerializeField] public float crouchAngularDragFactor;
@@ -24,6 +29,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         movementSM = new StateMachine();
         idle = new IdleState(this, movementSM);
