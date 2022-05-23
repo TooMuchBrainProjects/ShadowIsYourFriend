@@ -4,16 +4,11 @@ using UnityEngine;
 
 public abstract class Grounded : PlayerState
 {
-
-    Collider2D playerCollider;
-
     protected bool isGrounded;
     protected Vector2 movementInput;
 
     public Grounded(Player player, StateMachine stateMachine) : base(player, stateMachine)
-    {
-        this.playerCollider = player.GetComponent<Collider2D>();
-    }
+    {}
 
     public override void Enter()
     {
@@ -43,10 +38,16 @@ public abstract class Grounded : PlayerState
             }
 
         }
-        //else if(!isGrounded)
-        //    stateMachine.ChangeState(player.fall);
+        else if(!isGrounded && player.rb.velocity.y < -0.1f)
+            stateMachine.ChangeState(player.fall);
         else
             stateMachine.ChangeState(player.idle);
+
+
+        if (isGrounded)
+            this.player.spriteRenderer.color = Color.green;
+        else
+            this.player.spriteRenderer.color = Color.red;
     }
 
     public override void HandleInput()
@@ -55,10 +56,11 @@ public abstract class Grounded : PlayerState
         this.movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
-    public override void PhysicsUpdate()
+    public override void OnCollisionStay2D(Collision2D collision)
     {
-        base.PhysicsUpdate();
-        isGrounded = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, this.player.jumpableGrounds);
+        base.OnCollisionStay2D(collision);
+        //isGrounded = player.IsGroundCollision(collision);
+        isGrounded = player.IsGrounded();
     }
 }
 
@@ -92,15 +94,20 @@ public class RunState : Grounded
         this.player.animator.SetTrigger("run");
     }
 
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if(movementInput.x > 0.1f)
+            player.spriteRenderer.flipX = false;
+        else if(movementInput.x < -0.1f)
+            player.spriteRenderer.flipX = true;
+    }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        base.player.rb.velocity += new Vector2(movementInput.x * base.player.runSpeed * Time.fixedDeltaTime, 0);
-        
-        if(player.rb.velocity.x < 0)
-            this.player.spriteRenderer.flipX = true;
-        else if (player.rb.velocity.x > 0)
-            this.player.spriteRenderer.flipX = false;
+        player.Move(movementInput.x);
     }
     public override void Exit()
     {

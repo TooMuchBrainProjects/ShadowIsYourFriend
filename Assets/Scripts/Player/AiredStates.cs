@@ -25,6 +25,11 @@ public abstract class Aired : PlayerState
     {
         base.LogicUpdate();
 
+        if (movementInput.x > 0.1f)
+            player.spriteRenderer.flipX = false;
+        else if (movementInput.x < -0.1f)
+            player.spriteRenderer.flipX = true;
+
         if (isGrounded)
         {
             if (movementInput.y > 0)
@@ -45,11 +50,12 @@ public abstract class Aired : PlayerState
             {
                 stateMachine.ChangeState(player.idle);
             }
-            this.player.spriteRenderer.color = Color.green;
         }
+
+        if(isGrounded)
+            this.player.spriteRenderer.color = Color.green;
         else
             this.player.spriteRenderer.color = Color.red;
-
     }
 
     public override void HandleInput()
@@ -61,14 +67,14 @@ public abstract class Aired : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        isGrounded = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, this.player.jumpableGrounds);
-        base.player.rb.velocity += new Vector2(movementInput.x * base.player.runSpeed * Time.fixedDeltaTime, 0);
+        base.player.Move(movementInput.x);
+    }
 
-
-        if (player.rb.velocity.x < 0)
-            this.player.spriteRenderer.flipX = true;
-        else if (player.rb.velocity.x > 0)
-            this.player.spriteRenderer.flipX = false;
+    public override void OnCollisionStay2D(Collision2D collision)
+    {
+        base.OnCollisionStay2D(collision);
+        //isGrounded = player.IsGroundCollision(collision);
+        isGrounded = player.IsGrounded();
     }
 }
 
@@ -93,16 +99,10 @@ public class JumpState : Aired
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(this.player.rb.velocity.y < 0f)
+        if(this.player.rb.velocity.y < -0.1f)
         {
             stateMachine.ChangeState(player.fall);
         }
-    }
-
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }
 
@@ -121,10 +121,5 @@ public class FallState : Aired
     {
         base.Enter();
         this.player.animator.ResetTrigger("fall");
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }
