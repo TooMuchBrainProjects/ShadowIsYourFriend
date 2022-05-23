@@ -144,5 +144,6 @@ public class CrouchState : Grounded
         this.player.collider.size /= new Vector2(1, this.player.crouchHeightFactor);
 
         this.player.animator.ResetTrigger("crouch");
+        this.player.animator.Play("player_crouch_rev");
     }
 }
