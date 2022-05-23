@@ -474,7 +474,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -508,7 +508,7 @@ MonoBehaviour:
     m_Bits: 64
   runSpeed: 10
   runMaxSpeed: 10
-  crouchHeightFactor: 0.8
+  crouchHeightFactor: 0.9
   crouchAngularDragFactor: 2
   jumpForce: 10
 --- !u!95 &1363849520

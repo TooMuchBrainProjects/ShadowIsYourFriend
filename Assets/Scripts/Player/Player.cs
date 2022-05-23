@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         rb.velocity += new Vector2(force, 0f);
     }
 
-    /*
+    /* IsGround Detection with Collision
     public bool IsGroundCollision(Collision2D collision)
     {
         if (collision.gameObject.tag != "Ground")
