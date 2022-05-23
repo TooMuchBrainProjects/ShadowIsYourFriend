@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator animator;
     [HideInInspector] public SpriteRenderer spriteRenderer;
-    [HideInInspector] public new Collider2D collider;
+    [HideInInspector] public new BoxCollider2D collider;
 
     [SerializeField] public LayerMask jumpableGrounds;
 
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        collider = GetComponent<BoxCollider2D>();
 
         movementSM = new StateMachine();
         idle = new IdleState(this, movementSM);

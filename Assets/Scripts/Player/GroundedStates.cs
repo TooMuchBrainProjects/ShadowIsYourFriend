@@ -118,26 +118,31 @@ public class RunState : Grounded
 
 public class CrouchState : Grounded
 {
-    Transform playerTransform;
-    Transform playerDefaultTransform;
     public CrouchState(Player player, StateMachine stateMachine) : base(player, stateMachine)
-    {
-        playerTransform = player.transform;
-        playerDefaultTransform = player.transform;
-    }
+    {}
 
     public override void Enter()
     {
         base.Enter();
-        this.player.rb.angularDrag *= this.player.crouchAngularDragFactor;
-        playerTransform.localScale = new Vector3(playerTransform.localScale.x, playerTransform.localScale.y * this.player.crouchHeightFactor, playerTransform.localScale.z);
-        //playerTransform.position = new Vector3(playerTransform.position.x, (playerDefaultTransform.localScale.y - playerTransform.localScale.y)/2 , playerTransform.position.z);
 
+        this.player.rb.angularDrag *= this.player.crouchAngularDragFactor;
+
+        float colliderYSize = this.player.collider.size.y;
+        this.player.collider.offset -= new Vector2(0, (colliderYSize - (this.player.crouchHeightFactor * colliderYSize)) / 2);
+        this.player.collider.size *= new Vector2(1, this.player.crouchHeightFactor);
+
+        this.player.animator.SetTrigger("crouch");
     }
     public override void Exit()
     {
         base.Exit();
+
         this.player.rb.angularDrag /= this.player.crouchAngularDragFactor;
-        playerTransform.localScale = new Vector3(playerTransform.localScale.x, playerTransform.localScale.y / this.player.crouchHeightFactor, playerTransform.localScale.z);
+
+        float colliderYSize = this.player.collider.size.y;
+        this.player.collider.offset -= new Vector2(0, (colliderYSize - (colliderYSize / this.player.crouchHeightFactor)) / 2);
+        this.player.collider.size /= new Vector2(1, this.player.crouchHeightFactor);
+
+        this.player.animator.ResetTrigger("crouch");
     }
 }

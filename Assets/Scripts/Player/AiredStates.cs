@@ -4,15 +4,11 @@ using UnityEngine;
 
 public abstract class Aired : PlayerState
 {
-
-    Collider2D playerCollider;
     protected bool isGrounded;
     protected Vector2 movementInput;
 
     public Aired(Player player, StateMachine stateMachine) : base(player, stateMachine)
-    {
-        this.playerCollider = player.GetComponent<Collider2D>();
-    }
+    {    }
 
     public override void Enter()
     {
