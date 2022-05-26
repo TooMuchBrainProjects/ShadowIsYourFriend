@@ -84,12 +84,16 @@ public class JumpState : Aired
         base.Enter();
         this.player.rb.AddForce(Vector2.up * this.player.jumpForce, ForceMode2D.Impulse);
         this.player.animator.SetTrigger("jump");
+
+        this.player.rb.gravityScale = 2;
     }
 
     public override void Exit()
     {
         base.Enter();
         this.player.animator.ResetTrigger("jump");
+
+        this.player.rb.gravityScale = 1;
     }
 
     public override void LogicUpdate()
@@ -111,11 +115,15 @@ public class FallState : Aired
     {
         base.Enter();
         this.player.animator.SetTrigger("fall");
+
+        this.player.rb.gravityScale = 3;
     }
 
     public override void Exit()
     {
         base.Enter();
         this.player.animator.ResetTrigger("fall");
+
+        this.player.rb.gravityScale = 1;
     }
 }
