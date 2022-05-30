@@ -48,10 +48,12 @@ public abstract class Aired : PlayerState
             }
         }
 
+        /*
         if(isGrounded)
             this.player.spriteRenderer.color = Color.green;
         else
             this.player.spriteRenderer.color = Color.red;
+        */
     }
 
     public override void HandleInput()

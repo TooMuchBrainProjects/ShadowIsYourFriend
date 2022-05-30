@@ -43,11 +43,12 @@ public abstract class Grounded : PlayerState
         else
             stateMachine.ChangeState(player.idle);
 
-
+        /*
         if (isGrounded)
             this.player.spriteRenderer.color = Color.green;
         else
             this.player.spriteRenderer.color = Color.red;
+        */
     }
 
     public override void HandleInput()
