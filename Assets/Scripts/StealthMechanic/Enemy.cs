@@ -9,8 +9,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] float viewDistance;
     [SerializeField] float viewOffsetX;
 
-    [SerializeField] LayerMask targetMask;
-
     private bool canSeeTarget;
 
     void Update()
@@ -41,7 +39,8 @@ public class Enemy : MonoBehaviour
             
             if (angleBetweenGuardAndPlayer < viewAngle / 2f)
             {
-                return Physics2D.Raycast(viewerPos, targetPos, targetMask);
+                RaycastHit2D raycasthit =  Physics2D.Raycast(viewerPos, targetPos-viewerPos);
+                return raycasthit.collider.gameObject == target.gameObject;
             }
         }
         return false;
