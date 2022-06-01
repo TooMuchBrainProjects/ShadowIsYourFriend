@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class StealthMaster : MonoBehaviour
 {
@@ -10,14 +11,13 @@ public class StealthMaster : MonoBehaviour
     [SerializeField] public int attentionUpdateDelay;
     [SerializeField] public float attentionDropBase;
 
+    [SerializeField] public UnityEvent OnRecognised;
 
     [HideInInspector] public List<Enemy> watchers;
-
     public Invisible invisible;
     public Visible visible;
     public DroppingVisible droppingVisible;
     StateMachine stealthSM;
-
 
     void Start()
     {
@@ -48,11 +48,6 @@ public class StealthMaster : MonoBehaviour
     public void AttentionLost(Enemy enemy)
     {
         watchers.Remove(enemy);
-    }
-
-    public void Recognized()
-    {
-        Debug.Log("Recognized");
     }
 
     public IEnumerator AttentionRaiseUpdate()

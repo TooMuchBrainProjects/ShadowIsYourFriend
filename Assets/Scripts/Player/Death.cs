@@ -10,12 +10,11 @@ public class Death : PlayerState
     public override void Enter()
     {
         base.Enter();
-        this.player.animator.SetTrigger("death");
+        this.player.animator.Play("player_death");
     }
 
     public override void Exit()
     {
         base.Enter();
-        this.player.animator.ResetTrigger("death");
     }
 }
