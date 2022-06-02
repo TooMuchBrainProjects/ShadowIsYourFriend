@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public CrouchState crouch;
     public JumpState jump;
     public FallState fall;
+    public Death death;
     StateMachine movementSM;
 
     void Start()
@@ -41,8 +42,14 @@ public class Player : MonoBehaviour
         crouch = new CrouchState(this, movementSM);
         jump = new JumpState(this, movementSM);
         fall = new FallState(this, movementSM);
+        death = new Death(this, movementSM);
 
         movementSM.Initialize(idle);
+    }
+
+    public void Die()
+    {
+        movementSM.ChangeState(death);
     }
 
     private void Update()

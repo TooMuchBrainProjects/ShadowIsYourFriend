@@ -57,7 +57,9 @@ public class Visible : StealthState
         }
 
         if (stealthmaster.attention > stealthmaster.maxAttention)
-            stealthmaster.Recognized();
+        {
+            stealthmaster.OnRecognised.Invoke();
+        }
     }
 
     public override void Exit()
