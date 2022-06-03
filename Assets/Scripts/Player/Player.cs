@@ -82,7 +82,6 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(force + rb.velocity.x) > runMaxSpeed)
             force = Mathf.Clamp(runMaxSpeed - Mathf.Abs(rb.velocity.x),0,runMaxSpeed) * directionX * Time.fixedDeltaTime;
 
-        //Debug.Log(force);
         rb.velocity += new Vector2(force, 0f);
     }
 
