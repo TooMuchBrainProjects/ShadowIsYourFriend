@@ -45,7 +45,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     public virtual void InSightMovement() { }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         if (target == null)
             return;

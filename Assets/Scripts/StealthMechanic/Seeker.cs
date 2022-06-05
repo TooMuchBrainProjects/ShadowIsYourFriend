@@ -41,7 +41,7 @@ public static class Seeker
         
     }
 
-    static Vector2 RotateVector(Vector2 vec, float angle) => new Vector2(Mathf.Cos(angle) * vec.x - Mathf.Sin(angle) * vec.y, Mathf.Sin(angle) * vec.x + Mathf.Cos(angle) * vec.y);
+    public static Vector2 RotateVector(Vector2 vec, float angle) => new Vector2(Mathf.Cos(angle) * vec.x - Mathf.Sin(angle) * vec.y, Mathf.Sin(angle) * vec.x + Mathf.Cos(angle) * vec.y);
 
     /* Curve Drawing
     void DrawQuadraticCurve(Vector2 startPoint, Vector2 middlePoint, Vector2 endPoint)
