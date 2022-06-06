@@ -26,12 +26,12 @@ public class Guard : EnemyBehaviour
 
         waypointsIter = waypoints.GetEnumerator();
         waypointsIter.MoveNext();
-        RotateTowardsWaypoint();
+        RotateTowards((waypointsIter.Current as Transform).position);
     }
 
-    private void RotateTowardsWaypoint()
+    private void RotateTowards(Vector2 position)
     {
-        if ((waypointsIter.Current as Transform).position.x - transform.position.x >= 0)
+        if (position.x - transform.position.x >= 0)
             this.transform.localRotation = Quaternion.Euler(0,transform.rotation.y,0);
         else
             this.transform.localRotation = Quaternion.Euler(180f, transform.rotation.y, 180f);
@@ -46,7 +46,7 @@ public class Guard : EnemyBehaviour
                 waypointsIter = waypoints.GetEnumerator();
                 waypointsIter.MoveNext();
             }
-            RotateTowardsWaypoint();
+            RotateTowards((waypointsIter.Current as Transform).position);
             //rigidbody.AddForce(Mathf.Sign(rigidbody.velocity.x/2) * -1f * Mathf.Clamp(Mathf.Abs(rigidbody.velocity.x), 0,maxMoveSpeed) * Vector2.right , ForceMode2D.Impulse);
         }
 
@@ -66,6 +66,7 @@ public class Guard : EnemyBehaviour
     {
         base.OnInSight();
         animator.SetTrigger("idle");
+        RotateTowards(target.transform.position);
     }
 
     public override void OnOutSight()

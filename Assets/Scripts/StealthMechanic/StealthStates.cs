@@ -58,7 +58,7 @@ public class Visible : StealthState
 
         if (stealthmaster.attention > stealthmaster.maxAttention)
         {
-            stealthmaster.OnRecognised.Invoke();
+            stateMachine.ChangeState(stealthmaster.recognised);
         }
     }
 
@@ -99,5 +99,23 @@ public class DroppingVisible : StealthState
     {
         base.Exit();
         stealthmaster.StopCoroutine(attentionDropUpdateCoroutine);
+    }
+}
+
+public class Recognised : StealthState
+{
+    public Recognised(StealthMaster stealthmaster, StateMachine stateMachine) : base(stealthmaster, stateMachine)
+    { }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        foreach (EnemyBehaviour enemyBehaviour in stealthmaster.watchers)
+        {
+            enemyBehaviour.stateMachine.ChangeState(enemyBehaviour.recognisedState);
+        }
+
+        stealthmaster.OnRecognised.Invoke();
     }
 }

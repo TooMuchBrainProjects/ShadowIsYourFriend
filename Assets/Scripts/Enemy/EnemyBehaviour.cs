@@ -1,28 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using System;
-
 
 public abstract class EnemyBehaviour : MonoBehaviour
 {
     [HideInInspector] public StateMachine stateMachine;
     [HideInInspector] public SeekState seekState;
     [HideInInspector] public InSightState inSightState;
-    
+    [HideInInspector] public EnemyRecognisedState recognisedState;
+
     [Header("EnemyBehaviour Settings")]
     [SerializeField] public StealthMaster target;
-    [SerializeField] public float viewAngle;
-    [SerializeField] public float viewDistance;
-    [SerializeField] public float viewOffsetX;
     [SerializeField] public float attentionRaiseValue;
+    [HideInInspector] public Func<float,float> attentionRaise;
+
+    [SerializeField] public new Light2D light;
+    [SerializeField] public Color warnLightColor;
+    [HideInInspector] private Color normalLightColor;
 
     protected virtual void Start()
     {
         stateMachine = new StateMachine();
         seekState = new SeekState(this,stateMachine);
         inSightState = new InSightState(this,stateMachine);
+        recognisedState = new EnemyRecognisedState(this, stateMachine);
         stateMachine.Initialize(seekState);
+        normalLightColor = light.color;
+
+        attentionRaise = (attention) => attentionRaiseValue;
     }
 
     private void Update()
@@ -32,14 +37,15 @@ public abstract class EnemyBehaviour : MonoBehaviour
     public virtual void OnInSight()
     {
         target.AttentionAttracted(this);
+        light.color = warnLightColor;
+
     }
 
     public virtual void OnOutSight()
     {
         target.AttentionLost(this);
+        light.color = normalLightColor;
     }
-
-    public virtual float AttentionRaise(float attention) { return attentionRaiseValue; }
 
     public virtual void SeekMovement() { }
 
@@ -47,14 +53,13 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     protected virtual void OnDrawGizmos()
     {
-        if (target == null)
-            return;
-
-        bool canSee = false;
-        if(stateMachine != null)
-            canSee = stateMachine.CurrentState.GetType() == typeof(InSightState);
-        
-        Seeker.DrawGizmos(transform, target.transform, viewAngle, viewDistance, viewOffsetX, canSee);
+        Gizmos.color = Color.green;
+        if(stateMachine != null && stateMachine.CurrentState.GetType() == typeof(InSightState))
+            Gizmos.DrawRay(light.transform.position, target.transform.position - light.transform.position);
+    }
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        (stateMachine.CurrentState as EnemyState).OnCollisionEnter2D(collision);
     }
 }
 
@@ -63,20 +68,26 @@ public class EnemyState : State
 {
     protected EnemyBehaviour behaviour { get; set; }
 
-    protected bool canSee;
+    protected Func<bool> canSee;
 
     public EnemyState(EnemyBehaviour behaviour, StateMachine stateMachine) : base(stateMachine)
     {
         this.behaviour = behaviour;
-        this.canSee = false;
+        this.canSee = () => { return Seeker.CanSeeTarget(behaviour.light.transform, behaviour.target.transform, behaviour.light.pointLightInnerAngle, behaviour.light.pointLightInnerRadius); };
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        canSee = Seeker.CanSeeTarget(behaviour.transform, behaviour.target.transform, behaviour.viewAngle, behaviour.viewDistance, behaviour.viewOffsetX);
     }
 
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.transform == behaviour.target.transform)
+        {
+            stateMachine.ChangeState(behaviour.recognisedState);
+        }
+    }
 }
 
 public class SeekState : EnemyState
@@ -92,7 +103,7 @@ public class SeekState : EnemyState
     {
         base.LogicUpdate();
         behaviour.SeekMovement();
-        if (base.canSee)
+        if (base.canSee())
             base.stateMachine.ChangeState(behaviour.inSightState);
     }
     public override void Exit()
@@ -110,11 +121,12 @@ public class InSightState : EnemyState
         base.Enter();
         base.behaviour.OnInSight();
     }
+
     public override void LogicUpdate()
     {
-        behaviour.InSightMovement();
         base.LogicUpdate();
-        if (!base.canSee)
+        behaviour.InSightMovement();
+        if (!base.canSee())
             base.stateMachine.ChangeState(behaviour.seekState);
     }
 
@@ -122,5 +134,18 @@ public class InSightState : EnemyState
     {
         base.Exit();
         base.behaviour.OnOutSight();
+    }
+}
+
+public class EnemyRecognisedState : EnemyState
+{
+    public EnemyRecognisedState(EnemyBehaviour behaviour, StateMachine stateMachine) : base(behaviour, stateMachine)
+    { }
+
+    public override void Enter()
+    {
+        base.Enter();
+        behaviour.OnInSight();
+        behaviour.attentionRaise = (attention) => Mathf.Infinity;
     }
 }

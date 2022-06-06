@@ -2,15 +2,15 @@ using UnityEngine;
 
 public static class Seeker 
 {
-    public static bool CanSeeTarget(Transform transform, Transform target, float viewAngle, float viewDistance, float viewOffsetX)
+    public static bool CanSeeTarget(Transform transform, Transform target, float viewAngle, float viewDistance)
     {
         Vector2 targetPos = target.position;
-        Vector2 viewerPos = (Vector2)transform.position + new Vector2(viewOffsetX, 0.5f) * transform.right;
+        Vector2 viewerPos = (Vector2)transform.position;
 
         if ((targetPos - viewerPos).sqrMagnitude < viewDistance * viewDistance)
         {
             Vector2 dirToPlayer = (targetPos - viewerPos).normalized;
-            float angleBetweenGuardAndPlayer = Vector2.Angle(transform.right, dirToPlayer);
+            float angleBetweenGuardAndPlayer = Vector2.Angle(transform.up, dirToPlayer);
             
             if (angleBetweenGuardAndPlayer < viewAngle / 2f)
             {
@@ -20,8 +20,10 @@ public static class Seeker
         }
         return false;
     }
+    public static Vector2 RotateVector(Vector2 vec, float angle) => new Vector2(Mathf.Cos(angle) * vec.x - Mathf.Sin(angle) * vec.y, Mathf.Sin(angle) * vec.x + Mathf.Cos(angle) * vec.y);
 
-    public static void DrawGizmos(Transform transform, Transform target, float viewAngle, float viewDistance, float viewOffsetX, bool canSeeTarget)
+    /* no use case
+    public static void DrawLightCone(Transform transform, Transform target, float viewAngle, float viewDistance, float viewOffsetX, bool canSeeTarget)
     {
         Gizmos.color = Color.red;
 
@@ -39,9 +41,8 @@ public static class Seeker
         if (canSeeTarget)
             Gizmos.DrawRay(startPoint, target.transform.position - (Vector3)startPoint);
         
-    }
+    }*/
 
-    public static Vector2 RotateVector(Vector2 vec, float angle) => new Vector2(Mathf.Cos(angle) * vec.x - Mathf.Sin(angle) * vec.y, Mathf.Sin(angle) * vec.x + Mathf.Cos(angle) * vec.y);
 
     /* Curve Drawing
     void DrawQuadraticCurve(Vector2 startPoint, Vector2 middlePoint, Vector2 endPoint)

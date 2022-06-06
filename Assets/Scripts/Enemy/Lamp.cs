@@ -7,11 +7,16 @@ public class Lamp : EnemyBehaviour
     [Header("Lamp Settings")]
     [SerializeField] public float maxAttetionRaise;
 
-    public override float AttentionRaise(float attention)
+    protected override void Start()
     {
-        if (attentionRaiseValue + attention > maxAttetionRaise)
-            return 0;
-        else
-            return attentionRaiseValue;
+        base.Start();
+
+        base.attentionRaise = delegate (float attention)
+        {
+            if (attentionRaiseValue + attention > maxAttetionRaise)
+                return Mathf.Max(0, maxAttetionRaise - attention);
+            else
+                return attentionRaiseValue;
+        };
     }
 }

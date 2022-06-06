@@ -17,6 +17,7 @@ public class StealthMaster : MonoBehaviour
     public Invisible invisible;
     public Visible visible;
     public DroppingVisible droppingVisible;
+    public Recognised recognised;
     StateMachine stealthSM;
 
     void Start()
@@ -25,6 +26,7 @@ public class StealthMaster : MonoBehaviour
         invisible = new Invisible(this, stealthSM);
         visible = new Visible(this, stealthSM);
         droppingVisible = new DroppingVisible(this, stealthSM);
+        recognised = new Recognised(this, stealthSM);
 
         stealthSM.Initialize(invisible);
     }
@@ -55,10 +57,10 @@ public class StealthMaster : MonoBehaviour
         while (true)
         {
             //Debug.Log("AttentionRaiseUpdate");
-
-            foreach (var watcher in watchers)
+            EnemyBehaviour[] watchersArr = watchers.ToArray();
+            foreach (var watcher in watchersArr)
             {
-                attention += watcher.AttentionRaise(attention);
+                attention += watcher.attentionRaise(attention);
             }
 
             yield return new WaitForSeconds(this.attentionUpdateDelay);

@@ -11,8 +11,9 @@ public class PlayerState : State
         this.player = player;
     }
 
-    public virtual void OnCollisionEnter2D(Collision2D collision)
-    {}
     public virtual void OnCollisionStay2D(Collision2D collision)
     {}
+
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    { }
 }
