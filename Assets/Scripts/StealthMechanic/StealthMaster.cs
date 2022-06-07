@@ -22,6 +22,7 @@ public class StealthMaster : MonoBehaviour
 
     void Start()
     {
+        StealthMaster.instance = this;
         stealthSM = new StateMachine();
         invisible = new Invisible(this, stealthSM);
         visible = new Visible(this, stealthSM);
@@ -82,6 +83,19 @@ public class StealthMaster : MonoBehaviour
 
             yield return new WaitForSeconds(this.attentionUpdateDelay);
             i++;
+        }
+    }
+
+    private static StealthMaster instance;
+    public static StealthMaster Instance
+    {
+        get => instance;
+        set
+        {
+            if (instance != null)
+                throw new System.Exception("There is another StealthMaster Instance!");
+            else
+                instance = value;
         }
     }
 }

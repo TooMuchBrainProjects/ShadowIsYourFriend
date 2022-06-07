@@ -10,9 +10,9 @@ public abstract class EnemyBehaviour : MonoBehaviour
     [HideInInspector] public EnemyRecognisedState recognisedState;
 
     [Header("EnemyBehaviour Settings")]
-    [SerializeField] public StealthMaster target;
     [SerializeField] public float attentionRaiseValue;
     [HideInInspector] public Func<float,float> attentionRaise;
+    [HideInInspector] public StealthMaster target;
 
     [SerializeField] public new Light2D light;
     [SerializeField] public Color warnLightColor;
@@ -20,6 +20,8 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
+        target = StealthMaster.Instance;
+
         stateMachine = new StateMachine();
         seekState = new SeekState(this,stateMachine);
         inSightState = new InSightState(this,stateMachine);
@@ -59,7 +61,8 @@ public abstract class EnemyBehaviour : MonoBehaviour
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        (stateMachine.CurrentState as EnemyState).OnCollisionEnter2D(collision);
+        if (stateMachine != null)
+            (stateMachine.CurrentState as EnemyState).OnCollisionEnter2D(collision);
     }
 }
 

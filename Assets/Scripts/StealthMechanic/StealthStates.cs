@@ -13,7 +13,7 @@ public class StealthState : State
     public override void Enter()
     {
         base.Enter();
-        Debug.LogWarning($"State Changed to {this.ToString()}");
+        //Debug.LogWarning($"State Changed to {this.ToString()}");
     }
 }
 
