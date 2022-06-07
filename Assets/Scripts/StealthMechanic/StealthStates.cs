@@ -111,7 +111,8 @@ public class Recognised : StealthState
     {
         base.Enter();
 
-        foreach (EnemyBehaviour enemyBehaviour in stealthmaster.watchers)
+        EnemyBehaviour[] enemyBehaviours = stealthmaster.watchers.ToArray();
+        foreach (EnemyBehaviour enemyBehaviour in enemyBehaviours)
         {
             enemyBehaviour.stateMachine.ChangeState(enemyBehaviour.recognisedState);
         }

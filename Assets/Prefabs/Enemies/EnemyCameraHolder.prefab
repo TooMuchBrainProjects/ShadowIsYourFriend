@@ -60,7 +60,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensityEnabled: 1
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
@@ -98,8 +98,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 56.34
   m_PointLightOuterAngle: 86.60534
-  m_PointLightInnerRadius: 2.096393
-  m_PointLightOuterRadius: 2.4222708
+  m_PointLightInnerRadius: 4.9746065
+  m_PointLightOuterRadius: 6.2501054
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -327,7 +327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  viewOffsetX: 0.5
   attentionRaiseValue: 10
   light: {fileID: 1366058066}
   warnLightColor: {r: 0.8117647, g: 0.21960784, b: 0.21960784, a: 1}
