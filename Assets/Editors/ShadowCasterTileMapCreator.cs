@@ -64,6 +64,9 @@ static class ShadowCaster2DFromComposite
     /// </summary>
     public static void Build(CompositeCollider2D compositeCollider2D, bool castsShadows, bool selfShadows)
     {
+        if(compositeCollider2D.gameObject.GetComponent<CompositeShadowCaster2D>() == null)
+            compositeCollider2D.gameObject.AddComponent<CompositeShadowCaster2D>();
+        
         ShadowCaster2D[] shadowCasters = CreateShadowGameObjects(compositeCollider2D);
         for (int i = 0; i < compositeCollider2D.pathCount; i++)
         {

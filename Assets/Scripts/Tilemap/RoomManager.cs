@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEditor;
 
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] public Transform explorer;
-    [SerializeField] public GameObject[] rooms;
     [SerializeField] public GameObject startRoom;
+    [SerializeField] public GameObject[] rooms;
+
     [HideInInspector] private LinkedList<GameObject> activeRooms;
     [HideInInspector] private Room lastRoom;
     [HideInInspector] private GameObject lastRoomTemplate;
@@ -22,7 +24,6 @@ public class RoomManager : MonoBehaviour
         CreateNextRoom();
 
     }
-
     private void Update()
     {
         if(lastRoom.transform.position.x - explorer.transform.position.x < lastRoom.roomWidth/2f)   
