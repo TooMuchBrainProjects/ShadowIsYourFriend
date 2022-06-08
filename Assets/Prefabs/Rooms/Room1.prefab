@@ -123,7 +123,7 @@ MonoBehaviour:
   - {x: 2.1875293, y: -1, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43436
+  m_InstanceId: 59180
 --- !u!1 &3265247865109539075
 GameObject:
   m_ObjectHideFlags: 0
@@ -5405,7 +5405,7 @@ MonoBehaviour:
   - {x: -6.8124704, y: -4, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43438
+  m_InstanceId: 59182
 --- !u!1 &5313448036973616491
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,7 +5478,7 @@ MonoBehaviour:
   - {x: -17.999971, y: -11, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43470
+  m_InstanceId: 59214
 --- !u!1 &5809387052195106560
 GameObject:
   m_ObjectHideFlags: 0
@@ -5549,7 +5549,7 @@ MonoBehaviour:
   - {x: -4.812471, y: -7, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43442
+  m_InstanceId: 59186
 --- !u!1 &6351696262852419363
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,7 +5614,7 @@ MonoBehaviour:
   - {x: -17.999971, y: -4, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43410
+  m_InstanceId: 59154
 --- !u!1001 &4765755448118549780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5632,7 +5632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387044434994699247, guid: 85a52ade46564b4448e921d70d4f480e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.96
+      value: -11.84
       objectReference: {fileID: 0}
     - target: {fileID: 1387044434994699247, guid: 85a52ade46564b4448e921d70d4f480e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5676,7 +5676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4846839526370754623, guid: 85a52ade46564b4448e921d70d4f480e, type: 3}
       propertyPath: m_InstanceId
-      value: -36464
+      value: -48534
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85a52ade46564b4448e921d70d4f480e, type: 3}
@@ -5805,6 +5805,10 @@ PrefabInstance:
     - target: {fileID: 4846839526370754623, guid: 85a52ade46564b4448e921d70d4f480e, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846839526370754623, guid: 85a52ade46564b4448e921d70d4f480e, type: 3}
+      propertyPath: m_InstanceId
+      value: -48590
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85a52ade46564b4448e921d70d4f480e, type: 3}
