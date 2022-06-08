@@ -24,6 +24,7 @@ public class StealthMaster : MonoBehaviour
     {
         StealthMaster.instance = this;
     }
+
     void Start()
     {
         stealthSM = new StateMachine();
