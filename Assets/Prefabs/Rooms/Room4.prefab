@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomWidth: 36
-  entryDoors: 1
-  exitDoors: 1
+  entryDoors: 0
+  exitDoors: 0
 --- !u!1 &3265247865109539075
 GameObject:
   m_ObjectHideFlags: 0
@@ -6030,7 +6030,7 @@ MonoBehaviour:
   - {x: -17.999971, y: -11, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 63028
+  m_InstanceId: 41084
 --- !u!1 &8565547982820901582
 GameObject:
   m_ObjectHideFlags: 0
@@ -6109,7 +6109,7 @@ MonoBehaviour:
   - {x: -10.99997, y: -1, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 63026
+  m_InstanceId: 41082
 --- !u!1001 &871633602140959766
 PrefabInstance:
   m_ObjectHideFlags: 0

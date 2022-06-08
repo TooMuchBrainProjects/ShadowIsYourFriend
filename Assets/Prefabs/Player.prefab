@@ -195,8 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attention: 0
   maxAttention: 100
-  attentionUpdateDelay: 1
-  attentionDropBase: 2
+  attentionUpdateDelay: 0.3
+  attentionDropBase: 1.1
   OnRecognised:
     m_PersistentCalls:
       m_Calls:
@@ -252,4 +252,4 @@ MonoBehaviour:
   - {x: -0.19821742, y: 0.1257348, z: 0}
   m_ShapePathHash: 1918069649
   m_Mesh: {fileID: 0}
-  m_InstanceId: -66228
+  m_InstanceId: -3006

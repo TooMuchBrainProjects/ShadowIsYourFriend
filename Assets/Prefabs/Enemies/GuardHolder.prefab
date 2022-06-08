@@ -344,8 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebfa0541260a2574597d68dc56250e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attentionRaiseValue: 20
   target: {fileID: 6165703977488911355, guid: 5006e3f2dc51f654b998526ef6fb84ae, type: 3}
-  attentionRaiseValue: 10
   light: {fileID: 7810104119201237541}
   warnLightColor: {r: 0.8113208, g: 0.21813813, b: 0.21813813, a: 1}
   moveSpeed: 5
@@ -390,7 +390,7 @@ MonoBehaviour:
   - {x: -0.25495076, y: -0.9262271, z: 0}
   m_ShapePathHash: 311160255
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41014
+  m_InstanceId: -36520
 --- !u!1 &1387044436347539192
 GameObject:
   m_ObjectHideFlags: 0
