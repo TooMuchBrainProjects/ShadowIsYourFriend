@@ -25,7 +25,7 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-        if(lastRoom.transform.position.x - explorer.transform.position.x < lastRoom.roomWidth/2f)
+        if(lastRoom.transform.position.x - explorer.transform.position.x < lastRoom.roomWidth/2f)   
         {
             CreateNextRoom();
             if (activeRooms.Count > 3)
