@@ -23,6 +23,12 @@ public class Invisible : StealthState
     public Invisible(StealthMaster stealthmaster, StateMachine stateMachine) : base(stealthmaster, stateMachine)
     {}
 
+    public override void Enter()
+    {
+        base.Enter();
+        stealthmaster.audioManager.Play("invisible");
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -31,6 +37,11 @@ public class Invisible : StealthState
         {
             stateMachine.ChangeState(stealthmaster.visible);
         }
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        stealthmaster.audioManager.PauseWithFade("invisible",0.25f);
     }
 }
 
@@ -45,6 +56,7 @@ public class Visible : StealthState
     {
         base.Enter();
         attentionRaiseUpdateCoroutine = stealthmaster.StartCoroutine(stealthmaster.AttentionRaiseUpdate());
+        stealthmaster.audioManager.Play("visible");
     }
 
     public override void LogicUpdate()
@@ -99,6 +111,7 @@ public class DroppingVisible : StealthState
     {
         base.Exit();
         stealthmaster.StopCoroutine(attentionDropUpdateCoroutine);
+        stealthmaster.audioManager.StopWithFade("visible", 0.25f);
     }
 }
 
@@ -110,6 +123,8 @@ public class Recognised : StealthState
     public override void Enter()
     {
         base.Enter();
+        stealthmaster.audioManager.StopWithFade("visible", 0.25f);
+
 
         EnemyBehaviour[] enemyBehaviours = stealthmaster.watchers.ToArray();
         foreach (EnemyBehaviour enemyBehaviour in enemyBehaviours)

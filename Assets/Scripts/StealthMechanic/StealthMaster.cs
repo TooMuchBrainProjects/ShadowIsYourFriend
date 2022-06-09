@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class StealthMaster : MonoBehaviour
 {
+    [SerializeField] public AudioManager audioManager;
+
     [HideInInspector] public float attention;
     [SerializeField] public float maxAttention;
     [SerializeField] public float attentionUpdateDelay;

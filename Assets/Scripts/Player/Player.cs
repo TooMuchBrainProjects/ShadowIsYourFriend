@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(AudioManager))]
 public class Player : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public new BoxCollider2D collider;
 
+    [SerializeField] public AudioManager audioManager;
     [SerializeField] public LayerMask jumpableGrounds;
 
     [SerializeField] public float runSpeed;

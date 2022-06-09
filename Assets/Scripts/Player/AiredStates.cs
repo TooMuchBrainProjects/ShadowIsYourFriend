@@ -86,6 +86,7 @@ public class JumpState : Aired
         base.Enter();
         this.player.rb.AddForce(Vector2.up * this.player.jumpForce, ForceMode2D.Impulse);
         this.player.animator.SetTrigger("jump");
+        this.player.audioManager.Play("jump");
 
         this.player.rb.gravityScale = 2;
     }
