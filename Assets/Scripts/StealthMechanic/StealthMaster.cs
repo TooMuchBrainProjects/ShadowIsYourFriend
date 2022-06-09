@@ -12,6 +12,7 @@ public class StealthMaster : MonoBehaviour
     [SerializeField] public float attentionDropBase;
 
     [SerializeField] public UnityEvent OnRecognised;
+    [SerializeField] public UnityEvent OnAttentionChanged;
 
     [HideInInspector] public List<EnemyBehaviour> watchers;
     public Invisible invisible;
@@ -20,9 +21,10 @@ public class StealthMaster : MonoBehaviour
     public Recognised recognised;
     StateMachine stealthSM;
 
+
     private void Awake()
     {
-        StealthMaster.instance = this;
+        StealthMaster.Instance = this;
     }
 
     void Start()
@@ -68,6 +70,9 @@ public class StealthMaster : MonoBehaviour
                 attention += watcher.attentionRaise(attention);
             }
 
+            if(OnAttentionChanged != null)
+                OnAttentionChanged.Invoke();
+
             yield return new WaitForSeconds(this.attentionUpdateDelay);
         }
     }
@@ -84,6 +89,9 @@ public class StealthMaster : MonoBehaviour
                 attention = 0;
             else
                 attention -= attentionDropValue;
+
+            if (OnAttentionChanged != null)
+                OnAttentionChanged.Invoke();
 
             yield return new WaitForSeconds(this.attentionUpdateDelay);
             i++;
