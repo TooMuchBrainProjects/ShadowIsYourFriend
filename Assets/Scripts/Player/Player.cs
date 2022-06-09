@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(AudioManager))]
 public class Player : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
