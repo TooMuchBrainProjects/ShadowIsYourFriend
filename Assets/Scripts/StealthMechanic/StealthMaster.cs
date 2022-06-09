@@ -20,9 +20,13 @@ public class StealthMaster : MonoBehaviour
     public Recognised recognised;
     StateMachine stealthSM;
 
-    void Start()
+    private void Awake()
     {
         StealthMaster.instance = this;
+    }
+
+    void Start()
+    {
         stealthSM = new StateMachine();
         invisible = new Invisible(this, stealthSM);
         visible = new Visible(this, stealthSM);
