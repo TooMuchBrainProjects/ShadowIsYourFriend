@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
@@ -11,6 +11,9 @@ public class Score : MonoBehaviour
     public double ScoreCounter;
     public int MaxScoreCounter;
     public double ScoreCounterSpeed;
+
+    public TextMeshProUGUI CurrentScoreText;
+    public TextMeshProUGUI HighscoreText;
 
     [HideInInspector] public float PlayerDistance;
     [HideInInspector] public int CurrentScore;
@@ -41,8 +44,8 @@ public class Score : MonoBehaviour
             UpdateEverySecond();
         }
 
-        if (Input.GetMouseButtonDown(0))
-            ResetHighscore();
+        CurrentScoreText.text = CurrentScore.ToString();
+        HighscoreText.text = Highscore.ToString();
     }
 
     void UpdateEverySecond()

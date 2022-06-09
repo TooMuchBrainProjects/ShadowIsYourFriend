@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public Animator scoreBackgroundTransition;
+    public Animator attentionLevelTranstion;
 
     void Update()
     {
@@ -23,6 +25,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        scoreBackgroundTransition.SetTrigger("ScoreBackgroundStart");
+        attentionLevelTranstion.SetTrigger("AttentionLevelStart");
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -30,6 +34,8 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        scoreBackgroundTransition.SetTrigger("ScoreBackgroundEnd");
+        attentionLevelTranstion.SetTrigger("AttentionLevelEnd");
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
