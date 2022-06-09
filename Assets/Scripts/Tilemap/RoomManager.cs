@@ -13,6 +13,7 @@ public class RoomManager : MonoBehaviour
     [HideInInspector] private LinkedList<GameObject> activeRooms;
     [HideInInspector] private Room lastRoom;
     [HideInInspector] private GameObject lastRoomTemplate;
+
     private void Start()
     { 
         if (rooms.Length < 1)
@@ -22,11 +23,11 @@ public class RoomManager : MonoBehaviour
         activeRooms.AddLast(startRoom);
         lastRoom = startRoom.GetComponent<Room>();
         CreateNextRoom();
-
     }
+
     private void Update()
     {
-        if(lastRoom.transform.position.x - explorer.transform.position.x < lastRoom.roomWidth/2f)   
+        if(lastRoom.transform.position.x - explorer.transform.position.x < lastRoom.roomWidth / 2f)   
         {
             CreateNextRoom();
             if (activeRooms.Count > 3)

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6165703977488911332}
   - component: {fileID: 6165703977488911335}
   - component: {fileID: 6165703977488911333}
+  - component: {fileID: 7381177545719931852}
   - component: {fileID: 6165703977488911355}
   - component: {fileID: 2124676647}
   m_Layer: 7
@@ -173,6 +174,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   collider: {fileID: 0}
+  audioManager: {fileID: 0}
   jumpableGrounds:
     serializedVersion: 2
     m_Bits: 64
@@ -181,6 +183,23 @@ MonoBehaviour:
   crouchHeightFactor: 0.7
   crouchAngularDragFactor: 2
   jumpForce: 20
+--- !u!114 &7381177545719931852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165703977488911328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72948318da2f2b649a18fe2c88ce348b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 6165703977488911335}
+  PlayerDistance: 0
+  CurrentScore: 0
+  Highscore: 0
+  ScoreCounter: 1
 --- !u!114 &6165703977488911355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c48d917ac577449f300340e2f2ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   attention: 0
   maxAttention: 100
   attentionUpdateDelay: 0.3
@@ -212,6 +232,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAttentionChanged:
+    m_PersistentCalls:
+      m_Calls: []
   watchers: []
 --- !u!114 &2124676647
 MonoBehaviour:
@@ -252,4 +275,4 @@ MonoBehaviour:
   - {x: -0.19821742, y: 0.1257348, z: 0}
   m_ShapePathHash: 1918069649
   m_Mesh: {fileID: 0}
-  m_InstanceId: -3006
+  m_InstanceId: 43204
