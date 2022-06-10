@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Rendering.Universal;
 using System;
+
 public class ShadowCasterCompositeCreator : EditorWindow
 {
     CompositeCollider2D compositeCollider2D;

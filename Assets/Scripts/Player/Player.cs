@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public new BoxCollider2D collider;
-
-    [SerializeField] public AudioManager audioManager;
     [SerializeField] public LayerMask jumpableGrounds;
 
     [SerializeField] public float runSpeed;

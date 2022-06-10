@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class StealthMaster : MonoBehaviour
 {
-    [SerializeField] public AudioManager audioManager;
-
     [HideInInspector] public float attention;
     [SerializeField] public float maxAttention;
     [SerializeField] public float attentionUpdateDelay;
@@ -42,7 +40,7 @@ public class StealthMaster : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log($"Attention Level: {attention}, Watchers: {watchers.Count}");
+        //Debug.Log($"Attention Level: {attention}, Watchers: {watchers.Count}");
         this.stealthSM.CurrentState.LogicUpdate();
     }
 

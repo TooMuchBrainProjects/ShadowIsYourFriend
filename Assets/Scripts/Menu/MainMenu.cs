@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public AudioSource titlemusic;
+    public void Start()
+    {
+        AudioManager.Instance.Play("title");
+    }
     public void PlayGame()
     {
-        DontDestroyOnLoad(this);
-        Coroutine m = StartCoroutine(FadeAudioSource.StartFade(titlemusic, 0.25f, 0f, () => Destroy(GameObject.Find("MainMenuManager"))));
+        AudioManager.Instance.StopWithFade("title", 0.25f);
         SceneManager.LoadScene("GameScene");
     }
 

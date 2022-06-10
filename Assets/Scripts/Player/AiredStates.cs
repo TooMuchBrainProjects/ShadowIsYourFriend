@@ -60,6 +60,8 @@ public abstract class Aired : PlayerState
     {
         base.HandleInput();
         this.movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        this.movementInput.y = Mathf.Clamp(movementInput.y + Input.GetAxisRaw("Jump"), -1, 1);
+
     }
 
     public override void PhysicsUpdate()
@@ -86,7 +88,7 @@ public class JumpState : Aired
         base.Enter();
         this.player.rb.AddForce(Vector2.up * this.player.jumpForce, ForceMode2D.Impulse);
         this.player.animator.SetTrigger("jump");
-        this.player.audioManager.Play("jump");
+        AudioManager.Instance.Play("jump");
 
         this.player.rb.gravityScale = 2;
     }

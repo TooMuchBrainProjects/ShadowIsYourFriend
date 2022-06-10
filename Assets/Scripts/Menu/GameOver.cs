@@ -10,10 +10,13 @@ public class GameOver : MonoBehaviour
     public void Dead()
     {
         gameOverUI.SetActive(true);
+        
     }
 
     public void Retry()
     {
+        AudioManager.Instance.Stop("visible");
+        AudioManager.Instance.Stop("invisible");
         SceneManager.LoadScene("GameScene");
     }
 }

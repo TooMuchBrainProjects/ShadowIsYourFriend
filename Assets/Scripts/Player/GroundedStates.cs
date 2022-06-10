@@ -55,6 +55,7 @@ public abstract class Grounded : PlayerState
     {
         base.HandleInput();
         this.movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        this.movementInput.y = Mathf.Clamp(movementInput.y + Input.GetAxisRaw("Jump"), -1, 1);
     }
 
     public override void OnCollisionStay2D(Collision2D collision)

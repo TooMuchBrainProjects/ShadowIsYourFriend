@@ -1,8 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System;
-
-
 [CustomEditor(typeof(RoomManager))]
 [CanEditMultipleObjects]
 public class RoomManagerInspectorExtension : Editor

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8643824577451142511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64,12 +64,6 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: gameover
-    clip: {fileID: 8300000, guid: 91501b0d81cae4a46b08be2cc586afc6, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: invisible
     clip: {fileID: 8300000, guid: 80969e09ee9b2a845881524494fc6ad0, type: 3}
     volume: 1
@@ -79,6 +73,12 @@ MonoBehaviour:
   - name: visible
     clip: {fileID: 8300000, guid: 0f13a60cdde2a444ba1fa9dde58f55b8, type: 3}
     volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: title
+    clip: {fileID: 8300000, guid: 1f8d55f6f09e243489b956140d7b2304, type: 3}
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}

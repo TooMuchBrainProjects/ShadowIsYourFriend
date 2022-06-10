@@ -37,6 +37,8 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        AudioManager.Instance.StopWithFade("visible", 0.25f);
+        AudioManager.Instance.StopWithFade("invisible", 0.25f);
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -11,7 +11,6 @@ public class Death : PlayerState
     {
         base.Enter();
         this.player.animator.Play("player_death");
-        this.player.audioManager.Play("death"); 
     }
 
     public override void Exit()
