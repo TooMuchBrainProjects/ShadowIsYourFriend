@@ -21,7 +21,9 @@ public abstract class Grounded : PlayerState
     {
         base.LogicUpdate();
 
-        if (movementInput.sqrMagnitude != 0)
+        if (!isGrounded && player.rb.velocity.y < -0.1f)
+            stateMachine.ChangeState(player.fall);
+        else if (movementInput.sqrMagnitude != 0)
         {
             if (movementInput.y > 0)
             {
@@ -38,8 +40,6 @@ public abstract class Grounded : PlayerState
             }
 
         }
-        else if(!isGrounded && player.rb.velocity.y < -0.1f)
-            stateMachine.ChangeState(player.fall);
         else
             stateMachine.ChangeState(player.idle);
 
