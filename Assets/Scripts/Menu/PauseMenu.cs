@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public Animator scoreBackgroundTransition;
     public Animator attentionLevelTranstion;
+    public ButtonSelectManager buttonSelectManager;
 
     void Update()
     {
@@ -36,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         scoreBackgroundTransition.SetTrigger("ScoreBackgroundEnd");
         attentionLevelTranstion.SetTrigger("AttentionLevelEnd");
+        buttonSelectManager.ToPause();
         Time.timeScale = 0f;
         GameIsPaused = true;
     }

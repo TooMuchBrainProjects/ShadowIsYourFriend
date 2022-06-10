@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public TextMeshProUGUI Highscore;
 
-    public void Start()
+    void Start()
     {
         AudioManager.Instance.Play("title");
         UpdateMainMenuHighscore();
