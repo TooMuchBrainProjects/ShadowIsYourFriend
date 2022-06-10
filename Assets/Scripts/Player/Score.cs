@@ -5,16 +5,19 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    private int nextUpdate = 1;
+    private double nextUpdate = 0.05;
+    private bool playerIsDead = false;
 
     public Rigidbody2D rb;
     public double ScoreCounter;
     public int MaxScoreCounter;
     public double ScoreCounterSpeed;
+    public int ScoreMinusPerSecond;
 
     public TextMeshProUGUI CurrentScoreText;
     public TextMeshProUGUI HighscoreText;
 
+    [HideInInspector] private StealthMaster stealthMaster;
     [HideInInspector] public float PlayerDistance;
     [HideInInspector] public int CurrentScore;
 
@@ -26,6 +29,8 @@ public class Score : MonoBehaviour
 
     void Start()
     {
+        stealthMaster = StealthMaster.Instance;
+
         // Zahl zwischen 0 und 1 machen (normalize)
         if(ScoreCounterSpeed >= 1)
             ScoreCounterSpeed = ScoreCounterSpeed / Mathf.Pow(10f, (float)ScoreCounterSpeed.ToString().Length);
@@ -50,6 +55,8 @@ public class Score : MonoBehaviour
 
     void UpdateEverySecond()
     {
+        if (CurrentScore > 0 && !playerIsDead)
+            CurrentScore -= ScoreMinusPerSecond;
         if (rb.position.x > PlayerDistance)
         {
             PlayerDistance = rb.position.x;
@@ -64,10 +71,18 @@ public class Score : MonoBehaviour
             Debug.LogError("Highscore: " + Highscore);
         }
 
+        if(stealthMaster.maxAttention > 50)
+            stealthMaster.maxAttention -= 0.1f;
+        Debug.Log(stealthMaster.maxAttention);
     }
 
     public void ResetHighscore()
     {
         Highscore = 0;
+    }
+
+    public void PlayerIsDead()
+    {
+        playerIsDead = true;
     }
 }

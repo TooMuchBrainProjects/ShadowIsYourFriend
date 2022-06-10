@@ -196,10 +196,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6165703977488911335}
+  ScoreCounter: 10
+  MaxScoreCounter: 69
+  ScoreCounterSpeed: 9
+  ScoreMinusPerSecond: 10
+  CurrentScoreText: {fileID: 0}
+  HighscoreText: {fileID: 0}
   PlayerDistance: 0
   CurrentScore: 0
-  Highscore: 0
-  ScoreCounter: 1
 --- !u!114 &6165703977488911355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioManager: {fileID: 0}
   attention: 0
-  maxAttention: 100
+  maxAttention: 200
   attentionUpdateDelay: 0.3
   attentionDropBase: 1.1
   OnRecognised:
@@ -232,9 +236,45 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: Dead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7381177545719931852}
+        m_TargetAssemblyTypeName: Score, Assembly-CSharp
+        m_MethodName: PlayerIsDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnAttentionChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AttentionLevel, Assembly-CSharp
+        m_MethodName: SetAttention
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   watchers: []
 --- !u!114 &2124676647
 MonoBehaviour:
@@ -275,4 +315,4 @@ MonoBehaviour:
   - {x: -0.19821742, y: 0.1257348, z: 0}
   m_ShapePathHash: 1918069649
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43204
+  m_InstanceId: -1300
