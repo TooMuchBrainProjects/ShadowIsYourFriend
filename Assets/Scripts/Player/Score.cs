@@ -34,7 +34,7 @@ public class Score : MonoBehaviour
         // Zahl zwischen 0 und 1 machen (normalize)
         if(ScoreCounterSpeed >= 1)
             ScoreCounterSpeed = ScoreCounterSpeed / Mathf.Pow(10f, (float)ScoreCounterSpeed.ToString().Length);
-        Debug.Log(ScoreCounterSpeed);
+        //Debug.Log(ScoreCounterSpeed);
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class Score : MonoBehaviour
         // If the next update is reached
         if (Time.time >= nextUpdate)
         {
-            Debug.Log(Time.time + ">=" + nextUpdate);
+            //Debug.Log(Time.time + ">=" + nextUpdate);
             // Change the next update (current second+1)
             nextUpdate = Mathf.FloorToInt(Time.time) + 1;
             // Call your fonction
@@ -55,8 +55,9 @@ public class Score : MonoBehaviour
 
     void UpdateEverySecond()
     {
-        if (CurrentScore > 0 && !playerIsDead)
-            CurrentScore -= ScoreMinusPerSecond;
+        if (!playerIsDead)
+            CurrentScore = Mathf.Max(0, CurrentScore - ScoreMinusPerSecond);
+
         if (rb.position.x > PlayerDistance)
         {
             PlayerDistance = rb.position.x;
@@ -67,13 +68,13 @@ public class Score : MonoBehaviour
             if (Highscore < CurrentScore)
                 Highscore = CurrentScore;
 
-            Debug.LogWarning("CurrentScore: " + CurrentScore);
-            Debug.LogError("Highscore: " + Highscore);
+            //Debug.LogWarning("CurrentScore: " + CurrentScore);
+            //Debug.LogError("Highscore: " + Highscore);
         }
 
         if(stealthMaster.maxAttention > 50)
             stealthMaster.maxAttention -= 0.1f;
-        Debug.Log(stealthMaster.maxAttention);
+        //Debug.Log(stealthMaster.maxAttention);
     }
 
     public void ResetHighscore()

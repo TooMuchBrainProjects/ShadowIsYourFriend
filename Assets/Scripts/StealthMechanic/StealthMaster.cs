@@ -40,10 +40,7 @@ public class StealthMaster : MonoBehaviour
 
     public void Update()
     {
-<<<<<<< HEAD
         //Debug.Log($"Attention Level: {attention}, Watchers: {watchers.Count}");
-=======
->>>>>>> 9e91062fadfe8efb874439b84428095ef4dac556
         this.stealthSM.CurrentState.LogicUpdate();
     }
 

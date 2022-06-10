@@ -13,12 +13,8 @@ public class GameOver : MonoBehaviour
     public void Dead()
     {
         gameOverUI.SetActive(true);
-<<<<<<< HEAD
-        
-=======
         scoreBackgroundTransition.SetTrigger("ScoreBackgroundEndwithExitTime");
         attentionLevelTranstion.SetTrigger("AttentionLevelEnd");
->>>>>>> 9e91062fadfe8efb874439b84428095ef4dac556
     }
 
     public void Retry()
