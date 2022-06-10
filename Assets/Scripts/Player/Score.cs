@@ -93,11 +93,6 @@ public class Score : MonoBehaviour
         }
     }
 
-    public void ResetHighscore()
-    {
-        Highscore = 0;
-    }
-
     public void PlayerIsDead()
     {
         playerIsDead = true;
