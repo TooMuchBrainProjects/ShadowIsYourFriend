@@ -367,10 +367,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 734346828}
+    m_SelectOnDown: {fileID: 1158072280}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1120,10 +1120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1158072280}
+    m_SelectOnDown: {fileID: 232101491}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1470,6 +1470,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 1b7723248c95f8447b9eeddbd17280e0, type: 2}
   slider: {fileID: 1849160915}
   buttonSelectManager: {fileID: 966542690}
+  mainMenu: {fileID: 966542688}
   mainMenuUI: {fileID: 1404173291}
   optionsMenuUI: {fileID: 1725254046}
   VolumeSlider: {fileID: 1849160913}
@@ -1934,10 +1935,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 232101491}
+    m_SelectOnDown: {fileID: 734346828}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1

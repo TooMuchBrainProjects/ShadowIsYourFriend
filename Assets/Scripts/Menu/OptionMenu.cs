@@ -11,9 +11,11 @@ public class OptionMenu : MonoBehaviour
     public Slider slider;
 
     public ButtonSelectManager buttonSelectManager;
+    public MainMenu mainMenu;
     public GameObject mainMenuUI;
     public GameObject optionsMenuUI;
     public GameObject VolumeSlider;
+
 
     public float Volume
     {
@@ -46,6 +48,7 @@ public class OptionMenu : MonoBehaviour
 
     public void BackToMain()
     {
+        mainMenu.UpdateMainMenuHighscore();
         optionsMenuUI.SetActive(false);
         mainMenuUI.SetActive(true);
         buttonSelectManager.OptionsToMain();
