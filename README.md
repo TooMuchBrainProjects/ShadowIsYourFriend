@@ -18,7 +18,7 @@ If you aren't familiar with git, these code fragments will help you:
   
     git pull
     
-Now you need to copy all files **except .gitignore** from this directory in explorer.
+Now you need to copy all files **except .gitignore** from this directory in explorer to rel branch.
 Then you need to build the new version in Unity Editor.
 
     git status
