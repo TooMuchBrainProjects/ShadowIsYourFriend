@@ -4,8 +4,9 @@ using UnityEngine;
 
 public abstract class Grounded : PlayerState
 {
-    protected bool isGrounded;
-    protected Vector2 movementInput;
+    [Header("Logic Settings")]
+    [HideInInspector] protected bool isGrounded;
+    [HideInInspector] protected Vector2 movementInput;
 
     public Grounded(Player player, StateMachine stateMachine) : base(player, stateMachine)
     {}

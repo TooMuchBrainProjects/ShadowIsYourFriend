@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class StealthState : State
 {
+    [Header("Logic Settings")]
     protected StealthMaster stealthmaster;
+
     public StealthState(StealthMaster stealthmaster, StateMachine stateMachine) : base(stateMachine)
     {
         this.stealthmaster = stealthmaster;

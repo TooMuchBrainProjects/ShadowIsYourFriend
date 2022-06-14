@@ -4,18 +4,28 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class OptionMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer;
-    public Slider slider;
-
-    public ButtonSelectManager buttonSelectManager;
+    [Header("Classes")]
     public MainMenu mainMenu;
+    public UsernameManager usernameManager;
+
+    [Header("Audio Settings")]
+    public AudioMixer audioMixer;
+
+    [Header("UI Settings")]
+    public Slider slider;
     public GameObject mainMenuUI;
     public GameObject optionsMenuUI;
+    public GameObject usernameMenuUI;
     public GameObject VolumeSlider;
 
+    public TMP_InputField usernameInputFieldUI;
+
+    [Header("Keyboard Settings")]
+    public ButtonSelectManager buttonSelectManager;
 
     public float Volume
     {
@@ -31,8 +41,9 @@ public class OptionMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("backspace"))
-            BackToMain();
+        if(optionsMenuUI.activeSelf)
+            if (Input.GetKeyDown("backspace") || Input.GetKeyDown("escape"))
+                BackToMain();
     }
 
     public void SetVolume(float volume)
@@ -41,14 +52,23 @@ public class OptionMenu : MonoBehaviour
         Volume = volume;
     }
 
+    public void ChangeUsername()
+    {
+        usernameInputFieldUI.text = usernameManager.Username;
+
+        optionsMenuUI.SetActive(false);
+        usernameMenuUI.SetActive(true);
+        buttonSelectManager.OptionsToUsername();
+    }
+
     public void ResetHighscore()
     {
         PlayerPrefs.SetInt("Highscore", 0);
+        Highscores.DeleteHighscore(usernameManager.Username);
     }
 
     public void BackToMain()
     {
-        mainMenu.UpdateMainMenuHighscore();
         optionsMenuUI.SetActive(false);
         mainMenuUI.SetActive(true);
         buttonSelectManager.OptionsToMain();

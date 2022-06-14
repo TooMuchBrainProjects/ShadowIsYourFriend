@@ -5,25 +5,38 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    private double nextUpdate = 0.05;
-    private bool playerIsDead = false;
-    private bool isOverYPos = false;
+    [Header("Components")]
+    public Rigidbody2D rb;
 
+    [Header("Score Logic Settings")]
     public double ScoreCounter;
     public int MaxScoreCounter;
     public double ScoreCounterSpeed;
     public int ScoreMinusPerSecond;
-    public double yPosScoreDisappear;
+    [HideInInspector] public int CurrentScore;
 
-    public Rigidbody2D rb;
+    [Header("Score Transition Settings")]
+    public double yPosScoreDisappear;
+    [HideInInspector] private bool isOverYPos = false;
+
+    [Header("UI Settings")]
     public TextMeshProUGUI CurrentScoreText;
     public TextMeshProUGUI HighscoreText;
+
+    [Header("Animation Settings")]
     public Animator scoreTransition;
     public Animator attentionLevelTransition;
 
+    [Header("Attention Settings")]
     [HideInInspector] private StealthMaster stealthMaster;
     [HideInInspector] public float PlayerDistance;
-    [HideInInspector] public int CurrentScore;
+
+    [Header("GameOver Settings")]
+    [HideInInspector] private bool playerIsDead = false;
+
+    [Header("Unassignable Variables")]
+    [HideInInspector] private double nextUpdate = 0.05;
+
 
     public int Highscore
     {
@@ -66,11 +79,13 @@ public class Score : MonoBehaviour
         {
             PlayerDistance = rb.position.x;
             CurrentScore += (int)ScoreCounter;
-
             // logistische Wachstumsfunktion
             ScoreCounter = MaxScoreCounter / (1 + ((MaxScoreCounter - ScoreCounter) / ScoreCounter) * Mathf.Pow((float)ScoreCounterSpeed, (float)ScoreCounter));
+            
             if (Highscore < CurrentScore)
+            {
                 Highscore = CurrentScore;
+            }
         }
 
         if(stealthMaster.maxAttention > 50)

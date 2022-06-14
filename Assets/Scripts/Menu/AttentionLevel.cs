@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AttentionLevel : MonoBehaviour 
+public class AttentionLevel : MonoBehaviour
 {
+    [Header("UI Settings")]
     public Slider slider;
     public Gradient gradient;
     public Image fill;
 
+    [Header("Attention Settings")]
     [HideInInspector] public StealthMaster stealthMaster;
 
     public void Start()

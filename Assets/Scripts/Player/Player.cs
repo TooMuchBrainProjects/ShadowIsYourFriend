@@ -6,20 +6,16 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
+
 public class Player : MonoBehaviour
 {
+    [Header("Components")]
     [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public Animator animator;
-    [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public new BoxCollider2D collider;
     [SerializeField] public LayerMask jumpableGrounds;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
 
-    [SerializeField] public float runSpeed;
-    [SerializeField] public float runMaxSpeed;
-    [SerializeField] public float crouchHeightFactor;
-    [SerializeField] public float crouchAngularDragFactor;
-    [SerializeField] public float jumpForce;  
-
+    [Header("Classes")]
     public IdleState idle;
     public RunState run;
     public CrouchState crouch;
@@ -27,6 +23,16 @@ public class Player : MonoBehaviour
     public FallState fall;
     public Death death;
     StateMachine movementSM;
+
+    [Header("Animation Settings")]
+    [HideInInspector] public Animator animator;
+
+    [Header("Movement Settings")]
+    [SerializeField] public float runSpeed;
+    [SerializeField] public float runMaxSpeed;
+    [SerializeField] public float crouchHeightFactor;
+    [SerializeField] public float crouchAngularDragFactor;
+    [SerializeField] public float jumpForce;
 
     void Start()
     {

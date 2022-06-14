@@ -6,14 +6,24 @@ using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    [Header("Classes")]
+    public GameOver gameOver;
 
+    [Header("Logic Settings")]
+    [HideInInspector] public static bool GameIsPaused = false;
+
+    [Header("Audio Settings")]
     public AudioMixer audioMixer;
+
+    [Header("UI Settings")]
     public GameObject pauseMenuUI;
+
+    [Header("Animation Settings")]
     public Animator scoreBackgroundTransition;
     public Animator attentionLevelTranstion;
+
+    [Header("Keyboard Settings")]
     public ButtonSelectManager buttonSelectManager;
-    public GameOver gameOver;
 
     public float Volume
     {

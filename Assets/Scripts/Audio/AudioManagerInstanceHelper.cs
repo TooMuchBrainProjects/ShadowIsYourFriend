@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class AudioManagerInstanceHelper : MonoBehaviour
 {
+
+    [Header("Audio Settings")]
     [SerializeField] public GameObject audioManager;
 
     public void Awake()

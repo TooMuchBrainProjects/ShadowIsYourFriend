@@ -6,11 +6,17 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
+    [Header("Logic Settings")]
     [HideInInspector] public bool IsDead = false;
 
+    [Header("UI Settings")]
     public GameObject gameOverUI;
+
+    [Header("Animation Settings")]
     public Animator scoreBackgroundTransition;
     public Animator attentionLevelTranstion;
+
+    [Header("Keyboard Settings")]
     public ButtonSelectManager buttonSelectManager;
 
     public void Dead()

@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public TextMeshProUGUI Highscore;
+    [Header("UI Settings")]
+    public GameObject mainMenuUI;
+    public GameObject optionsMenuUI;
+    public GameObject highscoreMenuUI;
+
+    [Header("Keyboard Settings")]
+    public ButtonSelectManager buttonSelectManager;
 
     void Start()
     {
         AudioManager.Instance.Play("title");
-        UpdateMainMenuHighscore();
     }
 
     public void PlayGame()
     {
-        AudioManager.Instance.StopWithFade("title", 0.25f);
+        //AudioManager.Instance.StopWithFade("title", 0.25f);
         SceneManager.LoadScene("GameScene");
     }
 
@@ -26,8 +30,17 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void UpdateMainMenuHighscore()
+    public void ShowOptions()
     {
-        Highscore.text = PlayerPrefs.GetInt("Highscore").ToString();
+        mainMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(true);
+        buttonSelectManager.MainToOptions();
+    }
+
+    public void ShowHighscores()
+    {
+        mainMenuUI.SetActive(false);
+        highscoreMenuUI.SetActive(true);
+        buttonSelectManager.MainToHighscore();
     }
 }

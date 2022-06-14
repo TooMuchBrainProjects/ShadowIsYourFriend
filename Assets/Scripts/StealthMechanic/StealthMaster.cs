@@ -6,21 +6,25 @@ using UnityEngine.UI;
 
 public class StealthMaster : MonoBehaviour
 {
-    [HideInInspector] public float attention;
-    [SerializeField] public float maxAttention;
-    [SerializeField] public float attentionUpdateDelay;
-    [SerializeField] public float attentionDropBase;
-
-    [SerializeField] public UnityEvent OnRecognised;
-    [SerializeField] public UnityEvent OnAttentionChanged;
-
-    [HideInInspector] public List<EnemyBehaviour> watchers;
+    [Header("Classes")]
     public Invisible invisible;
     public Visible visible;
     public DroppingVisible droppingVisible;
     public Recognised recognised;
     StateMachine stealthSM;
 
+    [Header("Events")]
+    [SerializeField] public UnityEvent OnRecognised;
+    [SerializeField] public UnityEvent OnAttentionChanged;
+
+    [Header("Logic Settings")]
+    [HideInInspector] public List<EnemyBehaviour> watchers;
+
+    [Header("Attention Settings")]
+    [SerializeField] public float maxAttention;
+    [SerializeField] public float attentionUpdateDelay;
+    [SerializeField] public float attentionDropBase;
+    [HideInInspector] public float attention;
 
     private void Awake()
     {

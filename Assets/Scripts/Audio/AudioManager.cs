@@ -6,10 +6,12 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Audio Settings")]
     public AudioMixerGroup audioMixer;
     public Sound[] sounds;
 
     static public AudioManager Instance { get; private set; }
+
     static public bool SetInstance(AudioManager value)
     {
         if (Instance != null)

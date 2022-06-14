@@ -6,12 +6,16 @@ using UnityEditor;
 
 public class RoomManager : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] public Transform explorer;
+
+    [Header("Classes")]
+    [HideInInspector] private Room lastRoom;
+
+    [Header("Room Settings")]
     [SerializeField] public GameObject startRoom;
     [SerializeField] public GameObject[] rooms;
-
     [HideInInspector] private LinkedList<GameObject> activeRooms;
-    [HideInInspector] private Room lastRoom;
     [HideInInspector] private GameObject lastRoomTemplate;
 
     private void Start()
