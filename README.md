@@ -6,4 +6,4 @@ https://thoughtbot.com/blog/how-to-git-with-unity
 
 ## Unity Version
 Please use this Unity Version if you want to change things and help out: 
-unityhub://2021.3.3f1/af2e63e8f9bd
+[Unity Version 2021.3.3f1](unityhub://2021.3.1f1/3b70a0754835)
