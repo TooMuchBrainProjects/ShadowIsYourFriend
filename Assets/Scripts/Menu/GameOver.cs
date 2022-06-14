@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
+    [HideInInspector] public static bool IsDead = false;
+
     public GameObject gameOverUI;
     public Animator scoreBackgroundTransition;
     public Animator attentionLevelTranstion;
@@ -13,6 +15,7 @@ public class GameOver : MonoBehaviour
 
     public void Dead()
     {
+        IsDead = true;
         gameOverUI.SetActive(true);
         scoreBackgroundTransition.SetTrigger("ScoreBackgroundEndwithExitTime");
         attentionLevelTranstion.SetTrigger("AttentionLevelEnd");
