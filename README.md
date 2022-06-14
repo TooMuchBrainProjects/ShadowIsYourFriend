@@ -5,4 +5,5 @@ This is the official repository of the all over the world known and most famous 
 https://thoughtbot.com/blog/how-to-git-with-unity
 
 ## Unity Version
-Please use this Unity Version if you want to change things and help out: https://download.unity3d.com/download_unity/3b70a0754835/Windows64EditorInstaller/UnitySetup64.exe
+Please use this Unity Version if you want to change things and help out: 
+unityhub://2021.3.3f1/af2e63e8f9bd
