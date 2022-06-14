@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    [HideInInspector] public static bool IsDead = false;
+    [HideInInspector] public bool IsDead = false;
 
     public GameObject gameOverUI;
     public Animator scoreBackgroundTransition;

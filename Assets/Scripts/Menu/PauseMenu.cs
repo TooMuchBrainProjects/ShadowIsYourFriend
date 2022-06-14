@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     public Animator scoreBackgroundTransition;
     public Animator attentionLevelTranstion;
     public ButtonSelectManager buttonSelectManager;
+    public GameOver gameOver;
 
     public float Volume
     {
@@ -22,7 +23,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !GameOver.IsDead)
+        if(Input.GetKeyDown(KeyCode.Escape) && !gameOver.IsDead)
         {
             if (GameIsPaused)
                 Resume();
