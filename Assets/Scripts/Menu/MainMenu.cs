@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        //AudioManager.Instance.StopWithFade("title", 0.25f);
+        AudioManager.Instance.StopWithFade("title", 0.25f);
         SceneManager.LoadScene("GameScene");
     }
 
