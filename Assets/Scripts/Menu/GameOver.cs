@@ -21,17 +21,35 @@ public class GameOver : MonoBehaviour
 
     public void Dead()
     {
+        // Values
         IsDead = true;
         gameOverUI.SetActive(true);
+
+        // Animation
         scoreBackgroundTransition.SetTrigger("ScoreBackgroundEndwithExitTime");
         attentionLevelTranstion.SetTrigger("AttentionLevelEnd");
+
+        // Menu
         buttonSelectManager.ToOver();
     }
 
     public void Retry()
     {
+        // Audio
         AudioManager.Instance.Stop("visible");
         AudioManager.Instance.Stop("invisible");
+
+        // Menu
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void LoadMenu()
+    {
+        // Audio
+        AudioManager.Instance.StopWithFade("visible", 0.25f);
+        AudioManager.Instance.StopWithFade("invisible", 0.25f);
+
+        // Menu
+        SceneManager.LoadScene("MainMenu");
     }
 }

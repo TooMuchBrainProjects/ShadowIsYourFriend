@@ -44,35 +44,73 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
-        scoreBackgroundTransition.SetTrigger("ScoreBackgroundStart");
-        attentionLevelTranstion.SetTrigger("AttentionLevelStart");
+        // Audio
         Volume = Volume + Mathf.Abs(-80f - Volume) / 2;
         audioMixer.SetFloat("Volume", Volume);
+
+        // Animation
+        scoreBackgroundTransition.SetTrigger("ScoreBackgroundStart");
+        attentionLevelTranstion.SetTrigger("AttentionLevelStart");
+
+        // Values
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
-    void Pause()
+    public void Pause()
     {
-        pauseMenuUI.SetActive(true);
-        scoreBackgroundTransition.SetTrigger("ScoreBackgroundEnd");
-        attentionLevelTranstion.SetTrigger("AttentionLevelEnd");
-        buttonSelectManager.ToPause();
+        // Audio
         Volume = Volume - Mathf.Abs(-80f - Volume) / 3;
         audioMixer.SetFloat("Volume", Volume);
+
+        // Animation
+        scoreBackgroundTransition.SetTrigger("ScoreBackgroundEnd");
+        attentionLevelTranstion.SetTrigger("AttentionLevelEnd");
+
+        // Keyboard
+        buttonSelectManager.ToPause();
+
+        // Values
+        pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
-    public void LoadMenu()
+    public void Retry()
     {
+        // Audio
         Volume = Volume + Mathf.Abs(-80f - Volume) / 2;
         audioMixer.SetFloat("Volume", Volume);
+        AudioManager.Instance.Stop("visible");
+        AudioManager.Instance.Stop("invisible");
+
+        // Animation
+        scoreBackgroundTransition.SetTrigger("ScoreBackgroundStart");
+        attentionLevelTranstion.SetTrigger("AttentionLevelStart");
+
+        // Values
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+
+        // Menu
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void LoadMenu()
+    {
+        // Audio
+        Volume = Volume + Mathf.Abs(-80f - Volume) / 2;
+        audioMixer.SetFloat("Volume", Volume);
         AudioManager.Instance.StopWithFade("visible", 0.25f);
         AudioManager.Instance.StopWithFade("invisible", 0.25f);
+
+        // Values
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+
+        // Menu
         SceneManager.LoadScene("MainMenu");
     }
 }

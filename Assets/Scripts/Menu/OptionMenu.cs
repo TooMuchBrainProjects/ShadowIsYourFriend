@@ -54,10 +54,13 @@ public class OptionMenu : MonoBehaviour
 
     public void ChangeUsername()
     {
-        usernameInputFieldUI.text = usernameManager.Username;
 
+        // Values
+        usernameInputFieldUI.text = usernameManager.Username;
         optionsMenuUI.SetActive(false);
         usernameMenuUI.SetActive(true);
+
+        // Menu
         buttonSelectManager.OptionsToUsername();
     }
 

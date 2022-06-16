@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Classes")]
+    Highscores highscoreManager;
+
     [Header("UI Settings")]
     public GameObject mainMenuUI;
     public GameObject optionsMenuUI;
@@ -39,6 +42,8 @@ public class MainMenu : MonoBehaviour
 
     public void ShowHighscores()
     {
+        //highscoreManager.DownloadHighscores();
+
         mainMenuUI.SetActive(false);
         highscoreMenuUI.SetActive(true);
         buttonSelectManager.MainToHighscore();
